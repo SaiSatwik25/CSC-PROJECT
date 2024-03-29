@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cloud Peer Project by Sathwik</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <header class="bg-gray-800 text-white py-4">
+        <h1 class="text-3xl text-center font-bold">Fetch latest News Articles</h1>
+        <h1 class="text-xl text-center font-bold">Cloud and Serverless project by Sai Satwik - 2100031619</h1>
+        <form class="flex justify-center mt-4" method="POST">
+            <input type="text" name="question" placeholder="Search for news" class="border text-black border-gray-300 rounded p-2 mr-2">
+            <input type="submit" value="Search" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        </form>
+    </header>
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col md:flex-row">
+            <div class="w-full">
+                <h2 class="text-2xl font-bold mb-4">Recent News</h2>
+                <ul id="news-list" class="space-y-4">
+                    {% for article in all_articles.articles %}
+                        <li class="bg-white rounded-lg shadow-lg p-4">
+                            <h3 class="text-xl font-bold mb-2">{{ article.title }}</h3>
+                            <p class="text-gray-700 mb-2">{{ article.description }}</p>
+                            <a href="{{ article.url }}" target="_blank" class="text-blue-500 hover:text-blue-700">Read more</a>
+                            {% if article.urlToImage %}
+                                <img src="{{ article.urlToImage }}" alt="{{ article.title }}" class="w-full md:w-1/2 mx-auto mt-4 rounded">
+                            {% endif %}
+                            <div class="flex justify-between items-center mt-4">
+                                <p class="text-gray-600">Published at: {{ article.publishedAt }}</p>
+                                <p class="text-gray-600">Author: {{ article.author }}</p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
